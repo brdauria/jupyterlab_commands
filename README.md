@@ -18,7 +18,10 @@ This code lets you inject arbitrary commands into the JLab frontend. There are a
 - etc...
 
 ## Example 
+
 #### jupyter_notebook_config.py
+
+Add the custom command:
 ```python
 def convertMe(request, *args, **kwargs):
     import subprocess, tornado, os, os.path, json
@@ -28,6 +31,11 @@ def convertMe(request, *args, **kwargs):
     return {'body': 'ok'}
 
 c.JupyterLabCommands.commands = {'sample_command': convertMe}
+```
+
+Disable validation with XSRF cookie:
+```python
+c.NotebookApp.disable_check_xsrf = True
 ```
 
 #### command palette
